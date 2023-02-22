@@ -1,0 +1,101 @@
+
+body {
+    font-family:Arial, Helvetica, sans-serif;
+    text-align: center;
+}
+
+input {
+    padding: 10px 10px;
+    margin: 10px 1%;
+    border-radius: 5px;
+    border-color: black;
+}
+
+h1{
+    text-align: center;
+}
+
+form{
+    text-align: center;
+    width: auto;
+}
+
+a {
+    lin
+}
+
+a:link {color:#000000;}      /* 未访问链接*/
+a:visited {color:#00FF00;}  /* 已访问链接 */
+a:hover {color:#FF00FF;}  /* 鼠标移动到链接上 */
+a:active {color:#0000FF;}  
+
+button {
+    border: 1px solid #eee;
+    border-radius: 8px;
+    padding: 10px 50px;
+    font-size: large;
+    color: white;
+    width: 15%;
+
+}
+
+.small-box {
+    width: 15%;
+}
+
+.long-box {
+    width: 34%;
+}
+
+.check-agree {
+    display: inline-flex;
+    padding: 10px;
+}
+.agree-box {
+
+    
+    
+}
+
+
+.register-button {
+    background-color: rgb(41, 123, 216);
+}
+
+.signIn-button {
+    background-color: green;
+}
+
+.register {
+    color: white;
+    background-color: rgb(41, 123, 216);
+    padding: 5px;
+    border-radius: 5px;
+
+}
+
+.submit {
+    align-items: center;
+    text-align: center;
+}
+
+.label-right {
+    /* float: right; */
+    font-size: small;
+    width: 360px;
+    text-align: left;
+    margin-left: 70px;
+
+    
+}
+/* 
+@media (max-width: 900px) {
+    .small-box {
+        width: 95%;
+    }
+  
+    .form-inline {
+      flex-direction: column;
+      align-items: stretch;
+    }
+  } */

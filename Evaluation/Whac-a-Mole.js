@@ -37,16 +37,7 @@ const View = (() => {
                 moleVules[i].style.display = "none";
             }
         }
-        // for(let index of indexArr){ //item==>[id : display(none/block)]
-        //     let imgId = "#mole_" + index;
 
-        //     //check if the img should be visible or not
-        //     if(imgId !== "block"){          
-        //         document.querySelector(imgId).style.display = "block";
-        //     }
-
-            
-        // }
     }
 
     // update the total score
@@ -64,7 +55,7 @@ const View = (() => {
     const restart = () => {
         changeVisible([]);
         updateScore(0);
-        timer(0);
+        timer(30);
     }
 
     return {
@@ -84,8 +75,6 @@ const View = (() => {
 const Model = ((view) => {
 
     const {changeVisible, updateScore} = view; 
-
-    // const task_container = document.querySelector("#board");
 
     class State {
         //initialize data
@@ -134,17 +123,29 @@ const Controller = ((view, model) => {
     var indexArr = state._popIndex; //current moles index
     var totalScore = state._score; //current score
     let num = 3; //max mole number
-    let timeLeft = 10;
+    let timeLeft = 30;
+    var leftIndexArr = []; //record left moles
+    var timeSlot = 1000;
+    var timerSwitch = false;
+
 
 
     //set restart button
     domSelecter.resbtn.addEventListener('click', (event) => {
+            //restart game when the game is processing
+            if(timeLeft > 0){
+                timerSwitch = true;
+            }
             reset();
             initMoles();
+
     })
 
     //restart function
     const reset = () => {
+        leftIndexArr = leftIndexArr.concat(indexArr);
+        console.log("restart left index: "+leftIndexArr);
+        console.log(leftIndexArr.length);
         indexArr = [];
         totalScore = 0;
         timeLeft = 30;
@@ -154,33 +155,28 @@ const Controller = ((view, model) => {
 
     //set timer
     const countDown = () => {
-        return x = setInterval( () => {
-            if(timeLeft > 0){
-                timer(timeLeft);
-                timeLeft--;
-            }else{
-                removeAll();
-                alert("Time is Over!");
-                clearInterval(x);
+        return y = setInterval( () => {
+            if( timeLeft >= 0 ){
+                if(timerSwitch == false){
+                    timer(timeLeft);
+                    timeLeft--; 
+                }else{
+                    timerSwitch = false;
+                    clearInterval(y);
+                    
+                }
+            }
+            else{
+
+                setTimeout(()=>{
+                    alert("Time is Over! Your total Score is: " + totalScore);
+                }, 500)
+                clearInterval(y);
                
             }
-        }, 1000)
+        }, timeSlot)
     }
 
-    //remove all moles when time is up
-    const removeAll = () => {
-        for(let i of indexArr){
-            let imgId = "#mole_" + i;
-            document.querySelector(imgId).removeEventListener('click', () => {
-                console.log("removed all moles");
-            });
-            
-        }
-        indexArr = [];
-        state.dataList = indexArr;
-        
-    }
-    
     //initialize 3 moles function
     const initMoles = () =>{
         countDown();
@@ -207,45 +203,55 @@ const Controller = ((view, model) => {
         }
         indexArr.push(index);
         // console.log("随机数："+index);
+        //set the visiblity to "block", update view
         state.dataList = indexArr; 
-        createListener(index); 
-    }
 
+        if(!leftIndexArr.includes(index)){
+                createListener(index); 
+            
+        }else{
+            for(let i = 0; i < leftIndexArr.length; i++){
+                if(leftIndexArr[i] == index){
+                    leftIndexArr.splice(i,1);
+                }
+            }
+        }
+        
+    }
 
     //create eventListener function
     const createListener = (index) => {
-        var imgId = "#mole_" + index;
 
+        var imgId = "#mole_" + index;
         //create click event listener
         document.querySelector(imgId).addEventListener('click', remove, false);
 
         function remove() {
-            totalScore++;
-            // domSelecter.score.innerHTML = state._score;
-            // console.log(state._score);
             //remove eventListener
             document.querySelector(imgId).removeEventListener('click', remove, false);
-            console.log("removed")
-            // document.querySelector(imgId).style.display = "none";
-            for(let i = 0; i < indexArr.length; i++){
-                if(indexArr[i] == index){
-                    // console.log("删除第"+indexArr[i]);
-                    
-                    indexArr.splice(i,1);
-                    // console.log("数组大小："+indexArr.length);
+            console.log("removed"+index);
+
+                totalScore++;
+                //update total score
+                state.updateScore = totalScore;
+                //update indexArr
+                for(let i = 0; i < indexArr.length; i++){
+                    if(indexArr[i] == index){
+                        indexArr.splice(i,1);
+                    }
                 }
-            }
-            //update new mole index
-            state.dataList = indexArr; 
-            //update total score
-            state.updateScore = totalScore;
-            setTimeout(()=>{
-                createMole();
-            }, 1000)
+                //update new mole view
+                state.dataList = indexArr; 
+                //create new mole
+                setTimeout(()=>{
+                    if(timerSwitch == false){
+                        createMole();
+                    }
+                    
+                }, timeSlot)
              
         }
-        
-        
+     
     }
 
     //initialize the game

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Whac-a-Mole</title>
+    <link rel="stylesheet" href="Whac-a-Mole.css">
+    <script src="Whac-a-Mole.js" defer></script>
+</head>
+<body>
+    <div id="game_container">
+        <!-- header on the top -->
+        <div id="header">
+            <!-- title and button on the left -->
+            <div id="title">
+                <h1>Welcome to Whac-a-Mole!!!</h1>
+                <h3>Let's GOOOO! Your totol score is: <h2 id="score"></h2></h3>
+                <button id="restart">Start Game!</button>
+            </div>
+
+            <!-- timer on the right top -->
+            <div id="timer">
+                <h2>Time Left:</h2>
+                <h2 id="time_left">30</h2>
+            </div>
+        </div>
+        
+
+
+
+
+        <!-- game board on the bottom -->
+        <div id="game_board">
+            <table id="board">
+                <tr>
+                    <td id="1" ><img id="mole_0" src="images/mole.jpeg" style="display: none; width:200px; height:200px"><img id="snake_0" src="images/mine.jpeg" style="display: none; width:180px; height:180px"></td>
+                    <td id="2"><img id="mole_1" src="images/mole.jpeg" style="display: none; width:200px; height:200px"><img id="snake_1" src="images/mine.jpeg" style="display: none; width:180px; height:180px"></td>
+                    <td id="3"><img id="mole_2" src="images/mole.jpeg" style="display: none; width:200px; height:200px"><img id="snake_2" src="images/mine.jpeg" style="display: none; width:180px; height:180px"></td>
+                    <td id="4"><img id="mole_3" src="images/mole.jpeg" style="display: none; width:200px; height:200px"><img id="snake_3" src="images/mine.jpeg" style="display: none; width:180px; height:180px"></td>
+                </tr>
+
+                <tr>
+                    <td id="5"><img id="mole_4" src="images/mole.jpeg" style="display: none; width:200px; height:200px"><img id="snake_4" src="images/mine.jpeg" style="display: none; width:180px; height:180px"></td>
+                    <td id="6"><img id="mole_5" src="images/mole.jpeg" style="display: none; width:200px; height:200px"><img id="snake_5" src="images/mine.jpeg" style="display: none; width:180px; height:180px"></td>
+                    <td id="7"><img id="mole_6" src="images/mole.jpeg" style="display: none; width:200px; height:200px"><img id="snake_6" src="images/mine.jpeg" style="display: none; width:180px; height:180px"></td>
+                    <td id="8"><img id="mole_7" src="images/mole.jpeg" style="display: none; width:200px; height:200px"><img id="snake_7" src="images/mine.jpeg" style="display: none; width:180px; height:180px"></td>
+                </tr>
+
+                <tr>
+                    <td id="9"><img id="mole_8" src="images/mole.jpeg" style="display: none; width:200px; height:200px"><img id="snake_8" src="images/mine.jpeg" style="display: none; width:180px; height:180px"></td>
+                    <td id="10"><img id="mole_9" src="images/mole.jpeg" style="display: none; width:200px; height:200px"><img id="snake_9" src="images/mine.jpeg" style="display: none; width:180px; height:180px"></td>
+                    <td id="11"><img id="mole_10" src="images/mole.jpeg" style="display: none; width:200px; height:200px"><img id="snake_10" src="images/mine.jpeg" style="display: none; width:180px; height:180px"></td>
+                    <td id="12"><img id="mole_11" src="images/mole.jpeg" style="display: none; width:200px; height:200px"><img id="snake_11" src="images/mine.jpeg" style="display: none; width:180px; height:180px"></td>
+                </tr>
+
+            </table>
+        </div>
+    </div>
+    
+</body>
+</html>
